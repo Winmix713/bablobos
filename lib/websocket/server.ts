@@ -255,7 +255,7 @@ export class WebSocketServer {
     } catch (error) {
       this.sendToClient(client, {
         type: 'update-error',
-        data: { error: error.message },
+        data: { error: error instanceof Error ? error.message : 'Unknown error' },
         timestamp: Date.now()
       });
     }

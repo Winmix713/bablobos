@@ -369,8 +369,8 @@ export class DesignTokenExtractor {
     
     Object.entries(tokens).forEach(([category, categoryTokens]) => {
       scss += `// ${category.charAt(0).toUpperCase() + category.slice(1)}\n`;
-      categoryTokens.forEach(token => {
-        scss += `$${token.name}: ${token.value};\n`;
+      categoryTokens.forEach((token: any) => {
+        scss += `${token.name}: ${token.value};\n`;
       });
       scss += '\n';
     });
@@ -430,7 +430,7 @@ export default tokens;`;
     
     Object.entries(tokens).forEach(([category, categoryTokens]) => {
       formatted[category] = {};
-      categoryTokens.forEach(token => {
+      categoryTokens.forEach((token: any) => {
         formatted[category][token.name] = {
           value: token.value,
           type: token.type,
@@ -478,11 +478,11 @@ export default tokens;`;
     const formatted: any = {};
     
     Object.entries(tokens).forEach(([category, categoryTokens]) => {
-      categoryTokens.forEach(token => {
+      categoryTokens.forEach((token: any) => {
         const path = token.name.split('-');
         let current = formatted;
         
-        path.forEach((segment, index) => {
+        path.forEach((segment: any, index: number) => {
           if (index === path.length - 1) {
             current[segment] = {
               value: token.value,
@@ -508,7 +508,7 @@ export default tokens;`;
     
     Object.entries(tokens).forEach(([category, categoryTokens]) => {
       formatted[category] = {};
-      categoryTokens.forEach(token => {
+      categoryTokens.forEach((token: any) => {
         formatted[category][token.name.replace(/-/g, '_')] = token.value;
       });
     });

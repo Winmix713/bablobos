@@ -37,7 +37,7 @@ export const reactPlugin: Plugin = {
 
     afterConversion: (code: string, node: FigmaNode) => {
       // Add React imports and format the component
-      const componentName = api.utils.toPascalCase(node.name || 'Component');
+      const componentName = node.name?.replace(/[^a-zA-Z0-9]/g, '') || 'Component';
       
       return `import React from 'react';
 import { cn } from '@/lib/utils';

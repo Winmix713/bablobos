@@ -293,7 +293,9 @@ export interface CacheOptions {
 
 // WebSocket Types
 export interface WebSocketMessage {
-  type: 'file-update' | 'node-update' | 'style-update' | 'component-update';
+  type: 'connection' | 'file-update' | 'node-update' | 'style-update' | 'component-update' | 
+        'file-watch-started' | 'update-result' | 'update-error' | 'preview-options-updated' | 
+        'server-shutdown';
   data: any;
   timestamp: number;
 }

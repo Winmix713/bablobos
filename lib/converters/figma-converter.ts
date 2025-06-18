@@ -67,7 +67,10 @@ export class FigmaConverter {
         await designTokenExtractor.export(designTokens, {
           json: true,
           css: true,
+          scss: false,
           tailwind: options.styling === 'tailwind',
+          styleDictionary: false,
+          javascript: false,
           typescript: options.typescript
         });
       }
@@ -113,7 +116,11 @@ export class FigmaConverter {
         console.log('📚 Generating Storybook stories...');
         storiesCode = await storyGenerator.generate(processedNode, {
           framework: options.framework,
-          typescript: options.typescript
+          typescript: options.typescript,
+          includeControls: true,
+          includeActions: true,
+          includeDocs: true,
+          includeA11y: options.enableAccessibility
         });
       }
 
@@ -124,7 +131,9 @@ export class FigmaConverter {
         testsCode = await testGenerator.generate(processedNode, {
           framework: options.framework,
           typescript: options.typescript,
-          accessibility: options.enableAccessibility
+          accessibility: options.enableAccessibility,
+          visual: true,
+          integration: true
         });
       }
 

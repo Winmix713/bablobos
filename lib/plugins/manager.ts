@@ -4,7 +4,7 @@ import { Plugin, PluginRegistry, PluginAPI, FigmaNode } from '@/types';
  * Plugin Manager for the Figma to React Converter
  * Manages registration, execution, and lifecycle of converter plugins
  */
-export class PluginManager implements PluginRegistry {
+export class PluginManager {
   private plugins = new Map<string, Plugin>();
   private loadedPlugins = new Set<string>();
 
@@ -73,7 +73,7 @@ export class PluginManager implements PluginRegistry {
     }
 
     try {
-      return hookFunction(...args);
+      return (hookFunction as any)(...args);
     } catch (error) {
       console.error(`Error executing hook '${hook}' in plugin '${pluginName}':`, error);
       throw error;
@@ -90,7 +90,7 @@ export class PluginManager implements PluginRegistry {
       const hookFunction = plugin.hooks[hook as keyof typeof plugin.hooks];
       if (hookFunction) {
         try {
-          result = hookFunction(result, ...args.slice(1));
+          result = (hookFunction as any)(result, ...args.slice(1));
         } catch (error) {
           console.error(`Error in plugin '${plugin.name}' hook '${hook}':`, error);
         }

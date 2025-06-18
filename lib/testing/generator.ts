@@ -11,7 +11,7 @@ export class TestGenerator {
   async generate(
     node: FigmaNode,
     options: {
-      framework: 'react' | 'vue' | 'svelte';
+      framework: 'react' | 'vue' | 'svelte' | 'react-native';
       typescript: boolean;
       accessibility: boolean;
       visual: boolean;

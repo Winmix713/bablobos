@@ -11,7 +11,7 @@ export class StoryGenerator {
   async generate(
     node: FigmaNode,
     options: {
-      framework: 'react' | 'vue' | 'svelte';
+      framework: 'react' | 'vue' | 'svelte' | 'react-native';
       typescript: boolean;
       includeControls: boolean;
       includeActions: boolean;
